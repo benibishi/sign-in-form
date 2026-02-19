@@ -1,1 +1,1 @@
-https://<your-github-username>.github.io/sign-in-form
+https://benibishi.github.io/sign-in-form/

@@ -4,7 +4,10 @@
 import { initSignInForm } from './signin.js';
 import { initDashboard } from './dashboard.js';
 
+console.log('Main module loaded');
+
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded');
     // Initialize sign-in form if on index.html
     initSignInForm();
     

@@ -11,10 +11,7 @@ export function initDashboard() {
     // Load initial data
     renderDashboard();
 
-    // Listen for updates from sign-in form
-    window.addEventListener('signInUpdated', renderDashboard);
-
-    // Also listen for storage events (cross-tab sync)
+    // Listen for storage events (cross-tab sync)
     window.addEventListener('storage', (e) => {
         if (e.key === STORAGE_KEY) {
             renderDashboard();
@@ -23,6 +20,9 @@ export function initDashboard() {
 
     function renderDashboard() {
         const signedInUsers = getUsers();
+
+        // Debug: log to console
+        console.log('Dashboard loaded', signedInUsers.length, 'users');
 
         // Sort by company name
         signedInUsers.sort((a, b) => a.companyName.localeCompare(b.companyName));

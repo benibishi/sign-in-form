@@ -1,4 +1,6 @@
-// Dashboard Logic
+// Dashboard Logic using localStorage
+
+const STORAGE_KEY = 'signInUsers';
 
 export function initDashboard() {
     const signedInUsersTableBody = document.querySelector('#signedInUsersTable tbody');
@@ -6,15 +8,21 @@ export function initDashboard() {
 
     if (!signedInUsersTableBody || !totalCountElement) return;
 
-    firebase.database().ref('signIns').on('value', (snapshot) => {
-        const data = snapshot.val();
-        const signedInUsers = [];
+    // Load initial data
+    renderDashboard();
 
-        if (data) {
-            Object.values(data).forEach(user => {
-                signedInUsers.push(user);
-            });
+    // Listen for updates from sign-in form
+    window.addEventListener('signInUpdated', renderDashboard);
+
+    // Also listen for storage events (cross-tab sync)
+    window.addEventListener('storage', (e) => {
+        if (e.key === STORAGE_KEY) {
+            renderDashboard();
         }
+    });
+
+    function renderDashboard() {
+        const signedInUsers = getUsers();
 
         // Sort by company name
         signedInUsers.sort((a, b) => a.companyName.localeCompare(b.companyName));
@@ -42,5 +50,10 @@ export function initDashboard() {
             row.insertCell().textContent = user.fullName;
             row.insertCell().textContent = user.safetyInduction ? 'Completed' : 'Pending';
         });
-    });
+    }
+}
+
+function getUsers() {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : [];
 }

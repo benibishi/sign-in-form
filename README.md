@@ -1,4 +1,3 @@
-https://benibishi.github.io/sign-in-form/
 # Sign-In Form
 
 A simple, responsive web-based sign-in system for construction site workers. Allows users to register their attendance with company, trade, and safety induction information.
@@ -23,10 +22,10 @@ A simple, responsive web-based sign-in system for construction site workers. All
   - Adapts to different screen sizes
   - Clean, modern UI with gradient background
 
-- **Firebase Realtime Database**
-  - Real-time data synchronization
-  - Data persists across sessions
-  - Multi-user support
+- **Local Storage**
+  - Data persists across page refreshes
+  - No backend required
+  - Works offline
 
 ## Project Structure
 
@@ -40,72 +39,29 @@ sign-in-form/
 │   ├── main.js             # Main entry point
 │   ├── signin.js           # Sign-in form logic
 │   └── dashboard.js        # Dashboard logic
-├── config/
-│   └── firebase-config.js  # Firebase configuration (REPLACE WITH YOUR CONFIG)
-└── package.json            # Project metadata
+├── docs/
+│   ├── DEPLOYMENT.md       # Deployment guide
+│   └── VERCEL-SETUP.md     # Vercel setup instructions
+├── vercel.json             # Vercel configuration
+├── package.json            # Project metadata
+└── README.md               # This file
 ```
 
-## Setup
+## Quick Start
 
-### 1. Configure Firebase
-
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Create a new project or select existing one
-3. Enable **Realtime Database** (Build → Realtime Database → Create Database)
-4. Set database rules for testing:
-   ```json
-   {
-     "rules": {
-       ".read": true,
-       ".write": true
-     }
-   }
-   ```
-5. Get your Firebase config:
-   - Project Settings (gear icon) → General
-   - Scroll to "Your apps" → Add web app or select existing
-   - Copy the `firebaseConfig` object
-6. Replace the config in `config/firebase-config.js` with your actual credentials
-
-### 2. Run Locally
+### Run Locally
 
 ```bash
-# Install serve (optional)
+# Install a local server (optional)
 npm install -g serve
 
-# Run local dev server
+# Run dev server
 npm run dev
 ```
 
 Navigate to `http://localhost:3000`.
 
-### 3. Deploy to Vercel
-
-**Option A: Vercel CLI**
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Login
-vercel login
-
-# Deploy
-vercel
-```
-
-**Option B: GitHub Integration**
-1. Push your code to GitHub
-2. Go to [vercel.com](https://vercel.com)
-3. Click "Add New Project"
-4. Import your GitHub repository
-5. Click "Deploy"
-
-**Option C: Direct from folder**
-```bash
-npm run deploy
-```
-
-## Usage
+### Usage
 
 1. Open `index.html` in a web browser
 2. Fill out the sign-in form:
@@ -128,19 +84,48 @@ npm run deploy
 - Cribbing
 - Excavation
 
+## Deploy to Vercel
+
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed deployment instructions.
+
+### Quick Deploy
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Deploy
+vercel --prod
+```
+
+### GitHub Integration
+
+1. Push to GitHub
+2. Import repo at [vercel.com](https://vercel.com)
+3. Auto-deploy on every push
+
 ## Technologies
 
 - HTML5
 - CSS3 (Flexbox, gradients, responsive media queries)
 - Vanilla JavaScript (ES6+ Modules)
-- Firebase Realtime Database
+- LocalStorage API
+- Vercel (deployment)
 
 ## Browser Support
 
 Works in all modern browsers that support:
 - ES6 JavaScript Modules
 - CSS Flexbox
-- Firebase SDK
+- LocalStorage API
+
+## Note on Data Storage
+
+This application uses **localStorage** for data persistence:
+- Data is stored in the user's browser
+- Data persists across page refreshes
+- Each browser/device has its own separate data
+- For multi-user shared data, a backend database would be required
 
 ## License
 

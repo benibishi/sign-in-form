@@ -1,4 +1,6 @@
-// Sign-In Form Logic
+// Sign-In Form Logic using localStorage
+
+const STORAGE_KEY = 'signInUsers';
 
 export function initSignInForm() {
     const form = document.querySelector('form');
@@ -18,20 +20,28 @@ export function initSignInForm() {
         }
 
         const newUser = {
+            id: Date.now().toString(),
             fullName: fullName,
             companyName: companyName,
             roleTrade: roleTrade,
             safetyInduction: safetyInduction,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
+            timestamp: new Date().toISOString()
         };
 
-        firebase.database().ref('signIns').push(newUser)
-            .then(() => {
-                alert('Form submitted and user signed in!');
-                form.reset();
-            })
-            .catch((error) => {
-                alert('Error signing in: ' + error.message);
-            });
+        // Save to localStorage
+        const users = getUsers();
+        users.push(newUser);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+
+        alert('Form submitted and user signed in!');
+        form.reset();
+
+        // Trigger custom event for dashboard update
+        window.dispatchEvent(new CustomEvent('signInUpdated'));
     });
+}
+
+export function getUsers() {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : [];
 }

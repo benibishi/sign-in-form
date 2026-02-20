@@ -1,16 +1,97 @@
-// Main entry point - Initialize page-specific logic
+// Main JavaScript - Sign-In Form and Dashboard
 
-// Import page-specific modules
-import { initSignInForm } from './signin.js';
-import { initDashboard } from './dashboard.js';
+const STORAGE_KEY = 'signInUsers';
 
-console.log('Main module loaded');
+// Helper: Get users from localStorage
+function getUsers() {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : [];
+}
 
+// Helper: Save users to localStorage
+function saveUsers(users) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+}
+
+// Sign-In Form Logic
+function initSignInForm() {
+    const form = document.querySelector('form');
+    if (!form) return;
+
+    console.log('Sign-in form initialized');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        console.log('Form submitted');
+
+        const fullName = document.getElementById('fullName').value;
+        const companyName = document.getElementById('companyName').value;
+        const roleTrade = document.getElementById('roleTrade').value;
+        const safetyInduction = document.getElementById('safetyInduction').checked;
+
+        if (!fullName || !companyName || !roleTrade || !safetyInduction) {
+            alert('Please fill in all required fields and confirm safety induction.');
+            return;
+        }
+
+        const newUser = {
+            id: Date.now().toString(),
+            fullName: fullName,
+            companyName: companyName,
+            roleTrade: roleTrade,
+            safetyInduction: safetyInduction,
+            timestamp: new Date().toISOString()
+        };
+
+        const users = getUsers();
+        users.push(newUser);
+        saveUsers(users);
+
+        console.log('User saved:', newUser);
+        alert('Form submitted and user signed in!');
+        form.reset();
+    });
+}
+
+// Dashboard Logic
+function initDashboard() {
+    const signedInUsersTableBody = document.querySelector('#signedInUsersTable tbody');
+    const totalCountElement = document.getElementById('totalCount');
+
+    if (!signedInUsersTableBody || !totalCountElement) return;
+
+    console.log('Dashboard initialized');
+    renderDashboard();
+
+    function renderDashboard() {
+        const signedInUsers = getUsers();
+        console.log('Dashboard loaded', signedInUsers.length, 'users');
+
+        signedInUsers.sort((a, b) => a.companyName.localeCompare(b.companyName));
+        totalCountElement.textContent = signedInUsers.length;
+        signedInUsersTableBody.innerHTML = '';
+
+        if (signedInUsers.length === 0) {
+            const noUsersRow = signedInUsersTableBody.insertRow();
+            const cell = noUsersRow.insertCell();
+            cell.colSpan = 4;
+            cell.textContent = 'No users signed in yet.';
+            cell.style.textAlign = 'center';
+            return;
+        }
+
+        signedInUsers.forEach(user => {
+            const row = signedInUsersTableBody.insertRow();
+            row.insertCell().textContent = user.companyName;
+            row.insertCell().textContent = user.roleTrade;
+            row.insertCell().textContent = user.fullName;
+            row.insertCell().textContent = user.safetyInduction ? 'Completed' : 'Pending';
+        });
+    }
+}
+
+// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded');
-    // Initialize sign-in form if on index.html
     initSignInForm();
-    
-    // Initialize dashboard if on dashboard.html
     initDashboard();
 });

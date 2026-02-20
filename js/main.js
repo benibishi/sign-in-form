@@ -82,10 +82,22 @@ function initDashboard() {
 
         signedInUsers.forEach(user => {
             const row = signedInUsersTableBody.insertRow();
-            row.insertCell().textContent = user.companyName;
-            row.insertCell().textContent = user.roleTrade;
-            row.insertCell().textContent = user.fullName;
-            row.insertCell().textContent = user.safetyInduction ? 'Completed' : 'Pending';
+            
+            const companyCell = row.insertCell();
+            companyCell.textContent = user.companyName;
+            companyCell.setAttribute('data-label', 'Company');
+            
+            const roleCell = row.insertCell();
+            roleCell.textContent = user.roleTrade;
+            roleCell.setAttribute('data-label', 'Trade');
+            
+            const nameCell = row.insertCell();
+            nameCell.textContent = user.fullName;
+            nameCell.setAttribute('data-label', 'Name');
+            
+            const statusCell = row.insertCell();
+            statusCell.textContent = user.safetyInduction ? 'Completed' : 'Pending';
+            statusCell.setAttribute('data-label', 'Status');
         });
     }
 }

@@ -175,64 +175,120 @@ button:active {
     body {
         flex-direction: column;
         align-items: center;
+        padding: 10px;
     }
 
     .container, .signed-in-dashboard {
-        width: 95%;
+        width: 100%;
         margin: 10px 0;
         max-width: none;
+        padding: 20px 15px;
+        box-sizing: border-box;
     }
 
     h2 {
-        font-size: 1.5em;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+        word-wrap: break-word;
+    }
+
+    .signed-in-dashboard p {
+        font-size: 0.95em;
+        margin-bottom: 10px;
     }
 
     button {
         font-size: 1em;
-        padding: 10px 15px;
+        padding: 12px 15px;
+        width: 100%;
     }
 
-    #signedInUsersTable th,
-    #signedInUsersTable td {
-        font-size: 0.8em;
-        padding: 8px;
-    }
-
+    /* Card-style table for mobile */
     #signedInUsersTable thead {
         display: none;
     }
 
-    #signedInUsersTable, #signedInUsersTable tbody, #signedInUsersTable tr, #signedInUsersTable td {
+    #signedInUsersTable, 
+    #signedInUsersTable tbody, 
+    #signedInUsersTable tr, 
+    #signedInUsersTable td {
         display: block;
         width: 100%;
+        box-sizing: border-box;
     }
 
     #signedInUsersTable tr {
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 10px;
-        background-color: #f9f9f9;
-        display: flex;
-        flex-wrap: wrap;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        color: white;
+        overflow: hidden;
     }
 
     #signedInUsersTable td {
         border: none;
-        position: relative;
-        padding-left: 50%;
+        padding: 6px 0;
         text-align: right;
-        flex: 1 1 100%;
+        font-size: 0.9em;
+        position: relative;
+        padding-left: 40%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
     }
 
     #signedInUsersTable td::before {
         content: attr(data-label);
         position: absolute;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        text-align: left;
+        left: 0;
         font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.7em;
+        opacity: 0.8;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+    }
+
+    #signedInUsersTable td:first-child {
+        font-size: 1em;
+        font-weight: bold;
+        padding-left: 0;
+        text-align: left;
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+    }
+
+    #signedInUsersTable td:first-child::before {
+        content: '';
+        display: none;
+    }
+
+    /* Status badge styling */
+    #signedInUsersTable td:last-child {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        padding: 4px 10px;
+        border-radius: 20px;
+        text-align: center;
+        padding-left: 10px;
+        font-size: 0.85em;
+    }
+
+    #signedInUsersTable td:last-child::before {
+        content: '';
+        display: none;
+    }
+
+    /* Empty state */
+    #signedInUsersTable td[colspan="4"] {
+        text-align: center;
+        padding: 20px 10px;
+        background: #f5f5f5;
+        border-radius: 10px;
+        color: #666;
+        font-size: 0.9em;
     }
 }

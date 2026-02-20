@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "deploy": "vercel --prod"
   },
-  "keywords": [],
+  "keywords": [
+    "sign-in",
+    "firebase",
+    "construction"
+  ],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Construction site worker sign-in system with Firebase backend"
 }

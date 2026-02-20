@@ -1,25 +1,25 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right top, #6a11cb, #2575fc, #00d4ff); /* More complex gradient */
+    background: linear-gradient(to right top, #6a11cb, #2575fc, #00d4ff);
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align items to the start of the cross axis */
+    align-items: flex-start;
     min-height: 100vh;
     margin: 0;
     color: #333;
-    padding: 20px; /* Add some padding to the body */
-    box-sizing: border-box; /* Include padding in element's total width and height */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .container {
     background-color: #fff;
     padding: 30px 40px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* More prominent shadow */
-    width: 400px; /* Adjusted width for form */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 400px;
     text-align: center;
-    border: 1px solid #e0e0e0; /* Subtle border */
-    margin: 20px; /* Add margin around the form container */
+    border: 1px solid #e0e0e0;
+    margin: 20px;
 }
 
 h2 {
@@ -41,13 +41,13 @@ h2 {
 
 .checkbox-group input[type="checkbox"] {
     margin-right: 10px;
-    width: auto; /* Override general input width */
+    width: auto;
 }
 
 label {
     display: block;
     margin-bottom: 8px;
-    color: #333; /* Darker color for labels */
+    color: #333;
     font-weight: bold;
     font-size: 0.95em;
 }
@@ -61,18 +61,18 @@ select {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    transition: border-color 0.3s ease; /* Smooth transition for focus */
+    transition: border-color 0.3s ease;
 }
 
 input[type="text"]:focus,
 input[type="tel"]:focus,
 select:focus {
-    border-color: #007bff; /* Highlight border on focus */
-    outline: none; /* Remove default outline */
+    border-color: #007bff;
+    outline: none;
 }
 
 button {
-    background-color: #007bff; /* Primary blue */
+    background-color: #007bff;
     color: white;
     padding: 12px 15px;
     border: none;
@@ -85,12 +85,12 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 button:active {
-    background-color: #004085; /* Even darker on active/click */
+    background-color: #004085;
     transform: translateY(0);
 }
 
@@ -108,18 +108,17 @@ button:active {
     text-decoration: underline;
 }
 
-
 /* Styling for the Signed-in Users Dashboard */
 .signed-in-dashboard {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    max-width: 900px; /* Wider for the table */
-    margin: 20px; /* Space from other elements/body edge */
+    max-width: 900px;
+    margin: 20px;
     text-align: left;
     border: 1px solid #e0e0e0;
-    flex-grow: 1; /* Allow dashboard to take available space */
+    flex-grow: 1;
 }
 
 .signed-in-dashboard h2 {
@@ -136,13 +135,13 @@ button:active {
 }
 
 .dashboard-table-container {
-    overflow-x: auto; /* Enable horizontal scrolling for tables on small screens */
+    overflow-x: auto;
     margin-top: 20px;
 }
 
 #signedInUsersTable {
     width: 100%;
-    border-collapse: collapse; /* Remove space between table cells */
+    border-collapse: collapse;
     margin-top: 15px;
 }
 
@@ -151,7 +150,7 @@ button:active {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
-    white-space: nowrap; /* Prevent text wrapping in cells */
+    white-space: nowrap;
 }
 
 #signedInUsersTable th {
@@ -171,18 +170,17 @@ button:active {
     background-color: #f1f1f1;
 }
 
-
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     body {
-        flex-direction: column; /* Stack elements vertically on small screens */
-        align-items: center; /* Center items when stacked */
+        flex-direction: column;
+        align-items: center;
     }
 
     .container, .signed-in-dashboard {
-        width: 95%; /* Make containers take up more width on small screens */
-        margin: 10px 0; /* Adjust margin for stacked layout */
-        max-width: none; /* Remove max-width constraint */
+        width: 95%;
+        margin: 10px 0;
+        max-width: none;
     }
 
     h2 {
@@ -196,16 +194,16 @@ button:active {
 
     #signedInUsersTable th,
     #signedInUsersTable td {
-        font-size: 0.8em; /* Smaller font for table on small screens */
+        font-size: 0.8em;
         padding: 8px;
     }
-    
+
     #signedInUsersTable thead {
-        display: none; /* Hide table headers on small screens */
+        display: none;
     }
 
     #signedInUsersTable, #signedInUsersTable tbody, #signedInUsersTable tr, #signedInUsersTable td {
-        display: block; /* Make table elements behave like block elements */
+        display: block;
         width: 100%;
     }
 
@@ -220,15 +218,15 @@ button:active {
     }
 
     #signedInUsersTable td {
-        border: none; /* Remove cell borders */
+        border: none;
         position: relative;
-        padding-left: 50%; /* Space for pseudo-element label */
+        padding-left: 50%;
         text-align: right;
-        flex: 1 1 100%; /* Make each cell take full width */
+        flex: 1 1 100%;
     }
 
     #signedInUsersTable td::before {
-        content: attr(data-label); /* Use data-label for content */
+        content: attr(data-label);
         position: absolute;
         left: 6px;
         width: 45%;

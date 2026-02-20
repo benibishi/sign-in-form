@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signed-in Users Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 </head>
 <body>
     <div class="signed-in-dashboard">
@@ -26,6 +29,9 @@
             </table>
         </div>
     </div>
-    <script src="script.js"></script>
+    <!-- Firebase Config -->
+    <script src="./config/firebase-config.js"></script>
+    <!-- Main App -->
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>
